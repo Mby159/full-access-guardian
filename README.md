@@ -1,10 +1,12 @@
 # full-access-guardian
 
-AI Agent guardian that warns before dangerous operations.
+AI Agent guardian that warns before dangerous operations. Works with any AI Agent framework that supports hooks.
 
 ## Overview
 
-A ZCode skill that monitors AI Agent operations and warns when dangerous actions are about to be executed. Designed for users who run in "full access" mode but still want safety checks.
+A universal safety skill for AI Agents that monitors operations and warns when dangerous actions are about to be executed. Designed for users who run in "full access" mode but still want safety checks.
+
+**Compatible with: ZCode, Claude Code, Cursor, and any AI Agent with hook/pre-tool support.**
 
 ## Features
 
@@ -12,16 +14,7 @@ A ZCode skill that monitors AI Agent operations and warns when dangerous actions
 - Warns on dangerous patterns: `rm -rf`, `del`, `shutdown`, `curl POST`, etc.
 - Non-blocking - AI makes final decision
 - Clean warning format with operation details
-
-## Files
-
-```
-full-access-guardian/
-├── SKILL.md           # ZCode Skill definition
-├── hooks/
-│   └── guardian.js    # PreToolUse hook script
-└── README.md
-```
+- Framework agnostic - just needs Node.js for the hook script
 
 ## Installation
 
@@ -53,7 +46,11 @@ full-access-guardian/
 }
 ```
 
-4. Restart ZCode
+### For Claude Code / Cursor Users
+
+1. Copy `hooks/guardian.js` to your hooks directory
+2. Configure the PreToolUse hook in your config
+3. See your framework's hook documentation for the exact format
 
 ## Usage
 
@@ -77,6 +74,15 @@ The AI sees the warning and can pause to reconsider.
 | `shutdown` / `reboot` | 系统关机 |
 | `curl -X POST/DELETE/PUT` | 外部请求 |
 | `dd` / `fdisk` / `mkfs` | 磁盘危险命令 |
+
+## Framework Compatibility
+
+| Framework | Compatible | Notes |
+|-----------|-----------|-------|
+| ZCode | ✅ | Full support |
+| Claude Code | ✅ | Hook system similar |
+| Cursor | ✅ | TabNine / Compose hooks |
+| Other | ⚡ | Any hook system that runs Node.js |
 
 ## License
 
