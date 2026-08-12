@@ -1,4 +1,7 @@
-# full-access-guardian
+# Guardian (YOLO Edition)
+
+"You Only Live Once. Think Before You Execute."
+
 
 Universal AI Agent safety guardian. Warns before dangerous operations. For example, the ZCode.
 
